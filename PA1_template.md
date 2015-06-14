@@ -45,28 +45,12 @@ _________________________________________
 
 ```r
         install.packages("ggplot2")
-```
-
-```
-## Installing package into 'C:/Users/Jenny/Documents/R/win-library/3.2'
-## (as 'lib' is unspecified)
-```
-
-```
-## Warning: package 'ggplot2' is in use and will not be installed
-```
-
-```r
         library(ggplot2)
 ```
 
 
 ```r
         qplot(Sum, data=SumPerDay, xlab="Total number of steps taken each day")
-```
-
-```
-## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
 ![plot of chunk unnamed-chunk-4](instructions_fig/unnamed-chunk-4-1.png) 
@@ -168,10 +152,6 @@ _________________________________________
 
 ```r
         qplot(Sum, data=SumPerDayNew, xlab="Total number of steps taken each day after filling missing values")
-```
-
-```
-## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
 ![plot of chunk unnamed-chunk-11](instructions_fig/unnamed-chunk-11-1.png) 

@@ -5,7 +5,7 @@ output:
   html_document:
     keep_md: true
 ---
-```{r setoptions, echo=TRUE}
+```{r setoptions, echo=TRUE, message=FALSE,warning=FALSE}
 require(knitr)
 opts_chunk$set(echo = TRUE, cache = TRUE, cache.path = "cache/", fig.path = "instructions_fig/")
 ```
@@ -14,7 +14,7 @@ _________________________________________
 - Data1 : Raw dataset       (17568 rows)
 - Data2 : Completed dataset (15264 rows)
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, message=FALSE,warning=FALSE}
         Data1 <- read.csv("activity.csv")
         CC<-complete.cases(Data1)
         Data2<-Data1[CC,]
@@ -27,7 +27,7 @@ _________________________________________
 ## What is mean total number of steps taken per day?
 - SumPerDay : new Data Frame containing Date and the sum of steps taken per day.
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, message=FALSE,warning=FALSE}
         lv<-levels(Data2$date)
         SumPerDay<-data.frame(Date=character(),Sum=numeric())
         for (i in 1:length(lv)){
@@ -39,18 +39,18 @@ _________________________________________
 
 ###1. Histogram of the total number of steps taken each day
 
-```{r, echo=TRUE, results='hide'}
+```{r, echo=TRUE, message=FALSE,warning=FALSE}
         install.packages("ggplot2")
         library(ggplot2)
 ```
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, message=FALSE,warning=FALSE}
         qplot(Sum, data=SumPerDay, xlab="Total number of steps taken each day")
 ```
 
 ###2. Mean and Median number of steps taken each day
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, message=FALSE,warning=FALSE}
         Mean<-mean(SumPerDay$Sum)
         Median<-median(SumPerDay$Sum)
 ```
@@ -65,7 +65,7 @@ _________________________________________
 ## What is the average daily activity pattern?
 - AvgInt : new Data Frame containing the average number of steps taken for each 5-minute interval.
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, message=FALSE,warning=FALSE}
         Data2$interval<-factor(Data2$interval)
         lv2<-levels(Data2$interval)
         AvgInt<-data.frame(Average=numeric(),Interval=numeric())
@@ -78,13 +78,13 @@ _________________________________________
 
 ###1. Time series plot of the average number of steps taken (averaged across all days) versus the 5-minute intervals
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, message=FALSE,warning=FALSE}
         plot(as.numeric(AvgInt$Interval),AvgInt$Average, xlab="5-minute interval", ylab="Average number of steps taken", type="l")
 ```
 
 ###2. The 5-minute interval containing the maximum number of steps 
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, message=FALSE,warning=FALSE}
         Max<-AvgInt[AvgInt$Average == max(AvgInt$Average),]
         MaxInt<-Max$Interval
 ```
@@ -101,7 +101,7 @@ _________________________________________
 ###1. Strategy for imputing missing data
 - Missing valuse in the dataset : 
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, message=FALSE,warning=FALSE}
         CC<-complete.cases(Data1)
         Miss<-sum(!CC)
 ```
@@ -111,7 +111,7 @@ _________________________________________
 - Data8New     : New Dataset with the missing data filled with the mean for that 5-minute interval.
 - SumPerDayNew : new Data Frame containing Date and the sum of steps taken per day after filling missing values.
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, message=FALSE,warning=FALSE}
         Data5<-Data1[!CC, ]        
                 Data7NaFix<-Data2[0,]
                 for (i in 1:length(lv2)){
@@ -135,7 +135,7 @@ _________________________________________
         
 ###2. Histogram of the total number of steps taken each day after missing values were imputed
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, message=FALSE,warning=FALSE}
         qplot(Sum, data=SumPerDayNew, xlab="Total number of steps taken each day after filling missing values")
 ```
 
@@ -148,7 +148,7 @@ _________________________________________
 
 ###1. Panel plot comparing the average number of steps taken per 5-minute interval across weekdays and weekends
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, message=FALSE,warning=FALSE}
         Data8New$wk<-factor(weekdays(as.Date(Data8New$date)) %in% c("Saturday","Sunday"))
         AvgInt2<-data.frame(Average=numeric(),Interval=numeric(),WK=character())
         AvgInt3<-data.frame(Average=numeric(),Interval=numeric(),WK=character())
