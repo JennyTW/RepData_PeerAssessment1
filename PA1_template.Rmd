@@ -5,6 +5,10 @@ output:
   html_document:
     keep_md: true
 ---
+```{r setoptions, echo=TRUE}
+require(knitr)
+opts_chunk$set(echo = TRUE, cache = TRUE, cache.path = "cache/", fig.path = "figure/")
+```
 _________________________________________
 ## Loading and preprocessing the data
 - Data1 : Raw dataset       (17568 rows)
@@ -35,9 +39,12 @@ _________________________________________
 
 ###1. Histogram of the total number of steps taken each day
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, results='hide'}
         install.packages("ggplot2")
         library(ggplot2)
+```
+
+```{r, echo=TRUE}
         qplot(Sum, data=SumPerDay, xlab="Total number of steps taken each day")
 ```
 
