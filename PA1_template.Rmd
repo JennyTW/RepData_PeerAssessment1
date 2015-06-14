@@ -36,6 +36,7 @@ _________________________________________
 ###1. Histogram of the total number of steps taken each day
 
 ```{r, echo=TRUE}
+        install.packages("ggplot2")
         library(ggplot2)
         qplot(Sum, data=SumPerDay, xlab="Total number of steps taken each day")
 ```

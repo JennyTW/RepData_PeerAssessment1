@@ -1,5 +1,10 @@
-# Reproducible Research: Peer Assessment 1
 
+---
+title: "Reproducible Research: Peer Assessment 1"
+output: 
+  html_document:
+    keep_md: true
+---
 _________________________________________
 ## Loading and preprocessing the data
 - Data1 : Raw dataset       (17568 rows)
@@ -34,11 +39,51 @@ _________________________________________
 
 
 ```r
+        install.packages("ggplot2")
+```
+
+```
+## Installing package into 'C:/Users/Jenny/Documents/R/win-library/3.2'
+## (as 'lib' is unspecified)
+## also installing the dependencies 'colorspace', 'Rcpp', 'RColorBrewer', 'dichromat', 'munsell', 'labeling', 'plyr', 'gtable', 'reshape2', 'scales', 'proto'
+```
+
+```
+## package 'colorspace' successfully unpacked and MD5 sums checked
+## package 'Rcpp' successfully unpacked and MD5 sums checked
+## package 'RColorBrewer' successfully unpacked and MD5 sums checked
+## package 'dichromat' successfully unpacked and MD5 sums checked
+## package 'munsell' successfully unpacked and MD5 sums checked
+## package 'labeling' successfully unpacked and MD5 sums checked
+## package 'plyr' successfully unpacked and MD5 sums checked
+## package 'gtable' successfully unpacked and MD5 sums checked
+## package 'reshape2' successfully unpacked and MD5 sums checked
+## package 'scales' successfully unpacked and MD5 sums checked
+## package 'proto' successfully unpacked and MD5 sums checked
+## package 'ggplot2' successfully unpacked and MD5 sums checked
+## 
+## The downloaded binary packages are in
+## 	C:\Users\Jenny\AppData\Local\Temp\Rtmpc95auI\downloaded_packages
+```
+
+```r
         library(ggplot2)
+```
+
+```
+## Find out what's changed in ggplot2 with
+## news(Version == "1.0.1", package = "ggplot2")
+```
+
+```r
         qplot(Sum, data=SumPerDay, xlab="Total number of steps taken each day")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
+```
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+```
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png) 
 
 ###2. Mean and Median number of steps taken each day
 
@@ -77,7 +122,7 @@ _________________________________________
         plot(as.numeric(AvgInt$Interval),AvgInt$Average, xlab="5-minute interval", ylab="Average number of steps taken", type="l")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-6-1.png) 
+![plot of chunk unnamed-chunk-6](figure/unnamed-chunk-6-1.png) 
 
 ###2. The 5-minute interval containing the maximum number of steps 
 
@@ -139,10 +184,14 @@ _________________________________________
         qplot(Sum, data=SumPerDayNew, xlab="Total number of steps taken each day after filling missing values")
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-10-1.png) 
+```
+## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
+```
 
-        The Mean of steps taken each day after filling missing valuesis 1.0581014\times 10^{4}.
-        The Median of steps taken each day after filling missing valuesis 1.0395\times 10^{4}.
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
+
+        The Mean of steps taken each day after filling missing valuesis 1.0581014 &times; 10<sup>4</sup>.
+        The Median of steps taken each day after filling missing valuesis 1.0395 &times; 10<sup>4</sup>.
 
 
 _________________________________________
@@ -177,5 +226,5 @@ _________________________________________
         g+geom_line()+facet_grid(WK~.)
 ```
 
-![](PA1_template_files/figure-html/unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png) 
 
