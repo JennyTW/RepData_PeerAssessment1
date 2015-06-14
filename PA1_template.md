@@ -8,7 +8,7 @@ output:
 
 ```r
 require(knitr)
-opts_chunk$set(echo = TRUE, cache = TRUE, cache.path = "cache/", fig.path = "figure/")
+opts_chunk$set(echo = TRUE, cache = TRUE, cache.path = "cache/", fig.path = "instructions_fig/")
 ```
 _________________________________________
 ## Loading and preprocessing the data
@@ -69,7 +69,7 @@ _________________________________________
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
+![plot of chunk unnamed-chunk-4](instructions_fig/unnamed-chunk-4-1.png) 
 
 ###2. Mean and Median number of steps taken each day
 
@@ -108,7 +108,7 @@ _________________________________________
         plot(as.numeric(AvgInt$Interval),AvgInt$Average, xlab="5-minute interval", ylab="Average number of steps taken", type="l")
 ```
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png) 
+![plot of chunk unnamed-chunk-7](instructions_fig/unnamed-chunk-7-1.png) 
 
 ###2. The 5-minute interval containing the maximum number of steps 
 
@@ -174,7 +174,7 @@ _________________________________________
 ## stat_bin: binwidth defaulted to range/30. Use 'binwidth = x' to adjust this.
 ```
 
-![plot of chunk unnamed-chunk-11](figure/unnamed-chunk-11-1.png) 
+![plot of chunk unnamed-chunk-11](instructions_fig/unnamed-chunk-11-1.png) 
 
         The Mean of steps taken each day after filling missing valuesis 1.0581014 &times; 10<sup>4</sup>.
         The Median of steps taken each day after filling missing valuesis 1.0395 &times; 10<sup>4</sup>.
@@ -212,5 +212,5 @@ _________________________________________
         g+geom_line()+facet_grid(WK~.)
 ```
 
-![plot of chunk unnamed-chunk-12](figure/unnamed-chunk-12-1.png) 
+![plot of chunk unnamed-chunk-12](instructions_fig/unnamed-chunk-12-1.png) 
 

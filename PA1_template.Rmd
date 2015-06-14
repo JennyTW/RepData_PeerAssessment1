@@ -7,7 +7,7 @@ output:
 ---
 ```{r setoptions, echo=TRUE}
 require(knitr)
-opts_chunk$set(echo = TRUE, cache = TRUE, cache.path = "cache/", fig.path = "figure/")
+opts_chunk$set(echo = TRUE, cache = TRUE, cache.path = "cache/", fig.path = "instructions_fig/")
 ```
 _________________________________________
 ## Loading and preprocessing the data
