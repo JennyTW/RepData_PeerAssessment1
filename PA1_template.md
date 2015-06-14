@@ -1,16 +1,12 @@
+# Reproducible Research: Peer Assessment 1
 
----
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
----
 _________________________________________
 ## Loading and preprocessing the data
 - Data1 : Raw dataset       (17568 rows)
 - Data2 : Completed dataset (15264 rows)
 
-```{r, echo=TRUE}
+
+```r
         Data1 <- read.csv("activity.csv")
         CC<-complete.cases(Data1)
         Data2<-Data1[CC,]
@@ -23,7 +19,8 @@ _________________________________________
 ## What is mean total number of steps taken per day?
 - SumPerDay : new Data Frame containing Date and the sum of steps taken per day.
 
-```{r, echo=TRUE}
+
+```r
         lv<-levels(Data2$date)
         SumPerDay<-data.frame(Date=character(),Sum=numeric())
         for (i in 1:length(lv)){
@@ -35,20 +32,24 @@ _________________________________________
 
 ###1. Histogram of the total number of steps taken each day
 
-```{r, echo=TRUE}
+
+```r
         library(ggplot2)
         qplot(Sum, data=SumPerDay, xlab="Total number of steps taken each day")
 ```
 
+![](PA1_template_files/figure-html/unnamed-chunk-3-1.png) 
+
 ###2. Mean and Median number of steps taken each day
 
-```{r, echo=TRUE}
+
+```r
         Mean<-mean(SumPerDay$Sum)
         Median<-median(SumPerDay$Sum)
 ```
 
-        The Mean of steps taken each day is `r Mean`.
-        The Median of steps taken each day is `r Median`.
+        The Mean of steps taken each day is 9354.2295082.
+        The Median of steps taken each day is 10395.
 
 
 
@@ -57,7 +58,8 @@ _________________________________________
 ## What is the average daily activity pattern?
 - AvgInt : new Data Frame containing the average number of steps taken for each 5-minute interval.
 
-```{r, echo=TRUE}
+
+```r
         Data2$interval<-factor(Data2$interval)
         lv2<-levels(Data2$interval)
         AvgInt<-data.frame(Average=numeric(),Interval=numeric())
@@ -70,18 +72,22 @@ _________________________________________
 
 ###1. Time series plot of the average number of steps taken (averaged across all days) versus the 5-minute intervals
 
-```{r, echo=TRUE}
+
+```r
         plot(as.numeric(AvgInt$Interval),AvgInt$Average, xlab="5-minute interval", ylab="Average number of steps taken", type="l")
 ```
 
+![](PA1_template_files/figure-html/unnamed-chunk-6-1.png) 
+
 ###2. The 5-minute interval containing the maximum number of steps 
 
-```{r, echo=TRUE}
+
+```r
         Max<-AvgInt[AvgInt$Average == max(AvgInt$Average),]
         MaxInt<-Max$Interval
 ```
 
-        The 5-minute interval containing the maximum number of steps is `r MaxInt`.
+        The 5-minute interval containing the maximum number of steps is 835.
 
 
 
@@ -93,17 +99,19 @@ _________________________________________
 ###1. Strategy for imputing missing data
 - Missing valuse in the dataset : 
 
-```{r, echo=TRUE}
+
+```r
         CC<-complete.cases(Data1)
         Miss<-sum(!CC)
 ```
 
-        The total number of missing values in the dataset is `r Miss` rows.
+        The total number of missing values in the dataset is 2304 rows.
 
 - Data8New     : New Dataset with the missing data filled with the mean for that 5-minute interval.
 - SumPerDayNew : new Data Frame containing Date and the sum of steps taken per day after filling missing values.
 
-```{r, echo=TRUE}
+
+```r
         Data5<-Data1[!CC, ]        
                 Data7NaFix<-Data2[0,]
                 for (i in 1:length(lv2)){
@@ -122,17 +130,19 @@ _________________________________________
                 }
         Mean2<-mean(SumPerDayNew$Sum)
         Median2<-median(SumPerDayNew$Sum)
-
 ```
         
 ###2. Histogram of the total number of steps taken each day after missing values were imputed
 
-```{r, echo=TRUE}
+
+```r
         qplot(Sum, data=SumPerDayNew, xlab="Total number of steps taken each day after filling missing values")
 ```
 
-        The Mean of steps taken each day after filling missing valuesis `r Mean2`.
-        The Median of steps taken each day after filling missing valuesis `r Median2`.
+![](PA1_template_files/figure-html/unnamed-chunk-10-1.png) 
+
+        The Mean of steps taken each day after filling missing valuesis 1.0581014\times 10^{4}.
+        The Median of steps taken each day after filling missing valuesis 1.0395\times 10^{4}.
 
 
 _________________________________________
@@ -140,7 +150,8 @@ _________________________________________
 
 ###1. Panel plot comparing the average number of steps taken per 5-minute interval across weekdays and weekends
 
-```{r, echo=TRUE}
+
+```r
         Data8New$wk<-factor(weekdays(as.Date(Data8New$date)) %in% c("Saturday","Sunday"))
         AvgInt2<-data.frame(Average=numeric(),Interval=numeric(),WK=character())
         AvgInt3<-data.frame(Average=numeric(),Interval=numeric(),WK=character())
@@ -165,4 +176,6 @@ _________________________________________
         g<-ggplot(AvgIntByWD,aes(Interval, Average))
         g+geom_line()+facet_grid(WK~.)
 ```
+
+![](PA1_template_files/figure-html/unnamed-chunk-11-1.png) 
 
